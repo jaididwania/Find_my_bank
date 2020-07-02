@@ -44,19 +44,82 @@
 
             </div>
 
-            <form action="/" method="post">
-                {% csrf_token %}
-        
-                <input type="text" name="search" placeholder="Enter IFSC Code">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </form>
-            
+            <h4 style="margin-bottom: 30px;" >
+                Choose The Opitons:
+            </h4>
+
+            <label>
+                <input name="group1" onclick="ByIFSC()" type="radio" checked />
+                <span>Search Using IFSC Code</span>
+              </label>
+              &nbsp;
+              &nbsp;
+              <label>
+                <input name="group1" onclick="ByNameandCity()" type="radio" />
+                <span>Search using Bank Name and City</span>
+              </label>
+
+            <div id="byIFSC" class="pt-4">
+                <form action="/bankByIFSC" class="form-inline"  method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="ifsc" class="form-control" name="IFSCcode" placeholder="Enter IFSC Code">
+                    </div>
+
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
+
+            <div id="byNameCity" style="display: none;" class="pt-4">
+                <form class="form" action="/bankByNameandCity" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="bank_name" class="form-control" name="BankName" placeholder="Enter Bank Name">   
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="city" class="form-control" name="city" placeholder="Enter City">   
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+
+            </div>
+
+
         </div>
 
 
     </body>
+
+    <script>
+        function ByIFSC(){
+            var element = document.getElementById('byIFSC');
+            if(element.style.display==="none")
+            {
+                document.getElementById('byNameCity').style.display="none";
+                element.style.display="block";
+            }
+            else
+            {
+                element.style.display="none";
+            }
+        }
+
+        function ByNameandCity(){
+            var element = document.getElementById('byNameCity');
+            if(element.style.display==="none")
+            {
+                document.getElementById('byIFSC').style.display="none";
+                element.style.display="block";
+            }
+            else
+            {
+                element.style.display="none";
+            }
+        }
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
