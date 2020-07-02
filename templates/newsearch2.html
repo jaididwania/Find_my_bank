@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content% }
+
+    {% if found_status %}
+        <table class="striped responsive-table">
+            <thead>
+                <tr>
+                    <th>IFSC CODE</th>
+                    <th>Branch Id</th>
+                    <th>Branch</th>
+                    <th>Branch Address</th>
+                    <th>City</th>
+                    <th>District</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+        </table>
+
+    {% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-danger">
+                    <strong>Bank not found!</strong> Check for the credentials.
+                </div>
+            </div>
+        </div>
+    </div>  
+
+    {% endif %}
+
+{% endblock content% }

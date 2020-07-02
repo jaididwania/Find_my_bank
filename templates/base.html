@@ -51,13 +51,13 @@
             <label>
                 <input name="group1" onclick="ByIFSC()" type="radio" checked />
                 <span>Search Using IFSC Code</span>
-              </label>
+            </label>
               &nbsp;
               &nbsp;
-              <label>
+            <label>
                 <input name="group1" onclick="ByNameandCity()" type="radio" />
                 <span>Search using Bank Name and City</span>
-              </label>
+            </label>
 
             <div id="byIFSC" class="pt-4">
                 <form action="/bankByIFSC" class="form-inline"  method="POST">
@@ -74,11 +74,12 @@
 
             <div id="byNameCity" style="display: none;" class="pt-4">
                 <form class="form" action="/bankByNameandCity" method="POST">
+                    {% csrf_token %}
                     <div class="form-group">
                         <input type="text" id="bank_name" class="form-control" name="BankName" placeholder="Enter Bank Name">   
                     </div>
                     <div class="form-group">
-                        <input type="text" id="city" class="form-control" name="city" placeholder="Enter City">   
+                        <input type="text" id="city" class="form-control" name="City" placeholder="Enter City Name">   
                     </div>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                         <i class="material-icons right">send</i>
@@ -90,34 +91,32 @@
 
         </div>
 
+        {% block content %}
+
+        {% endblock content %}
 
     </body>
 
     <script>
         function ByIFSC(){
+            console.log('In function');
             var element = document.getElementById('byIFSC');
             if(element.style.display==="none")
             {
                 document.getElementById('byNameCity').style.display="none";
                 element.style.display="block";
             }
-            else
-            {
-                element.style.display="none";
-            }
         }
 
         function ByNameandCity(){
+            console.log('In Function');
             var element = document.getElementById('byNameCity');
             if(element.style.display==="none")
             {
                 document.getElementById('byIFSC').style.display="none";
                 element.style.display="block";
             }
-            else
-            {
-                element.style.display="none";
-            }
+
         }
     </script>
 
