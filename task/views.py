@@ -6,7 +6,7 @@ def home_view(request):
     return render(request,'base.html')
 
 def bankByIFSC(request):
-    
+        
     csvfile = csv.reader(open('csv_file/bank_branches.csv',"r",encoding="utf-8"))
     ifsc_check = request.POST.get('IFSCcode')  #Fetching the I/P IFSC Code by User
 
@@ -62,6 +62,7 @@ def bankByNameandCity(request):
         if bank_city == row[4] and bank_name == row[7] :
             list_of_banks.append({"ifsc_code":row[0],"branchId":row[1],"branch":row[2],"branch_address":row[3],"city":row[4],"district":row[5],"state":row[6],"bank_name":row[7]})
             found_status = 1    
+
 
     context = {
         'list_of_banks' : list_of_banks,

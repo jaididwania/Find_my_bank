@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% block content% }
+{% block content %}
 
     {% if found_status %}
-        <table class="striped responsive-table">
+    <div class="container">
+        <table class="table striped responsive-table">
             <thead>
                 <tr>
                     <th>IFSC CODE</th>
@@ -15,7 +16,21 @@
                     <th>State</th>
                 </tr>
             </thead>
-        </table>
+            {% for row in list_of_banks %}
+
+            <tr>
+                <th> {{ row.ifsc_code }} </th>
+                <td> {{ row.branchId }} </td>
+                <td> {{ row.branch }} </td>
+                <td> {{ row.branch_address }} </td>
+                <td> {{ row.city}} </td>
+                <td> {{ row.district }} </td>
+                <td> {{ row.state }} </td>
+            </tr>
+
+            {% endfor %}
+        </table> 
+    </div>
 
     {% else %}
     <div class="container">
@@ -30,4 +45,4 @@
 
     {% endif %}
 
-{% endblock content% }
+{% endblock content %}
